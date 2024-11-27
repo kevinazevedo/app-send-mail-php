@@ -57,7 +57,7 @@
 
         //Recipients
         $mail->setFrom('teste@gmail.com', 'Teste Remetente');
-        $mail->addAddress('user1@gmail.com', 'User Teste Destinatário');    //Add a recipient
+        $mail->addAddress($mensagem->__get("para"));         //Add a recipient
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');
@@ -68,12 +68,12 @@
 
         //Content
         $mail->isHTML(true);                                   //Set email format to HTML
-        $mail->Subject = 'Oi, eu sou o assunto';
-        $mail->Body    = 'Oi, eu sou o conteúdo do <strong>e-mail</strong>';
-        $mail->AltBody = 'Oi, eu sou o conteúdo do e-mail';
+        $mail->Subject = $mensagem->__get("assunto");
+        $mail->Body    = $mensagem->__get("mensagem");
+        $mail->AltBody = 'É necessário utilizar um client que suporte o HTML para ter acesso total ao conteúdo dessa mensagem';
 
         $mail->send();
-        echo 'Message has been sent';
+        echo 'O seu e-mail foi enviado com sucesso!';
     } 
     
     catch (Exception $e) {
